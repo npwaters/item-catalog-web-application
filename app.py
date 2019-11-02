@@ -1,4 +1,21 @@
+import os
 from flask import Flask
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+
+engine = create_engine(
+    'postgresql://vagrant:{0}@{1}/catalog'.format(
+        os.environ.get("VAGRANT_PASSWORD"),
+        os.environ.get("DB_IP")
+    ),
+    echo=True
+)
+Base = declarative_base()
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 
 def create_app(**config_overrides):
@@ -15,5 +32,8 @@ def create_app(**config_overrides):
 
     # register blueprints
     app.register_blueprint(home_app)
+
+    # create tables
+    Base.metadata.create_all(engine)
 
     return app
