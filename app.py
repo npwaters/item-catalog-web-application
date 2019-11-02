@@ -29,9 +29,15 @@ def create_app(**config_overrides):
 
     # import blueprints
     from home.views import home_app
+    from user.views import user_app
+    from category.views import category_app
+    from catalog_item.views import catalog_item_app
 
     # register blueprints
     app.register_blueprint(home_app)
+    app.register_blueprint(user_app)
+    app.register_blueprint(category_app)
+    app.register_blueprint(catalog_item_app)
 
     # create tables
     Base.metadata.create_all(engine)
