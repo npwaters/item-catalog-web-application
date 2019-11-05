@@ -1,4 +1,5 @@
 from flask.views import MethodView
+from flask import render_template
 from app import session
 from category.models import Category
 from catalog_item.models import CatalogItem
@@ -10,4 +11,9 @@ class ShowHomePage(MethodView):
         latest_items = 2
         categories = session.query(Category).all()
         latest_catalog_items = session.query(CatalogItem).limit(latest_items).all()
-        return "Hello World!!"
+        return render_template(
+            "main_nav.html",
+            categories=categories,
+            latest_catalog_items=latest_catalog_items,
+            heading="Latest Items"
+        )
