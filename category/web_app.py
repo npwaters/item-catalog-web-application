@@ -15,7 +15,6 @@ class GetCategoryItems(MethodView):
         ).all()
         return render_template(
             "category_items.html",
-            heading=category_name,
             categories=categories,
             category=category,
             category_items=catalog_items

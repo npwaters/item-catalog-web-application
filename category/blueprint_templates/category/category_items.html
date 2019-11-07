@@ -3,10 +3,17 @@
     <div id="content-nav">
     {% include "nav.html" %}
         <div id="content">
-            <h2>{{ heading }} Items ({{ category_items|length }} items)</h2>
+            <h2>{{ category.name }} Items ({{ category_items|length }} items)</h2>
                 {% for item in category_items %}
                     <div>
-                        {{ item.name }}
+                        <a href="{{ url_for(
+                            "catalog_item_app.get_catalog_item_web_view",
+                            category_name=category.name,
+                            catalog_item_name=item.name
+                        ) }}">
+                            {{ item.name }}
+
+                        </a>
                     </div>
                 {% endfor %}
         </div>
