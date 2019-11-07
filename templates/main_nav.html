@@ -1,16 +1,7 @@
 {% extends "base.html" %}
 {% block container %}
     <div id="content-nav">
-        <nav>
-            <h2>Categories</h2>
-            <ul>
-                {% for category in categories %}
-                    <li>
-                        {{ category.name }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
+    {% include "nav.html" %}
         <div id="content">
             <h2>{{ heading }}</h2>
             <ul>
