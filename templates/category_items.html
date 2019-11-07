@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block container %}
+    <div id="content-nav">
+    {% include "nav.html" %}
+        <div id="content">
+            <h2>{{ heading }} Items ({{ category_items|length }} items)</h2>
+                {% for item in category_items %}
+                    <div>
+                        {{ item.name }}
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}
