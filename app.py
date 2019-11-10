@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, session as login_session
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -28,12 +28,14 @@ def create_app(**config_overrides):
     app.config.update(config_overrides)
 
     # import blueprints
+    from authentication.views import authentication_app
     from home.views import home_app
     from user.views import user_app
     from category.views import category_app
     from catalog_item.views import catalog_item_app
 
     # register blueprints
+    app.register_blueprint(authentication_app)
     app.register_blueprint(home_app)
     app.register_blueprint(user_app)
     app.register_blueprint(category_app)
