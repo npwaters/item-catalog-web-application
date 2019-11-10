@@ -33,6 +33,7 @@ def create_app(**config_overrides):
     from user.views import user_app
     from category.views import category_app
     from catalog_item.views import catalog_item_app
+    from helpers.user_helpers import user_helpers_app
 
     # register blueprints
     app.register_blueprint(authentication_app)
@@ -40,6 +41,7 @@ def create_app(**config_overrides):
     app.register_blueprint(user_app)
     app.register_blueprint(category_app)
     app.register_blueprint(catalog_item_app)
+    app.register_blueprint(user_helpers_app)
 
     # create tables
     Base.metadata.create_all(engine)
