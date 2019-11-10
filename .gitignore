@@ -1,2 +1,4 @@
 /.vs/
 /.idea/
+/settings.py
+/authentication/client_secrets.json
