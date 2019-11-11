@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask import render_template
-from app import session
+from app import session, login_session
 from catalog_item.models import CatalogItem
 
 
@@ -12,5 +12,6 @@ class GetCatalogItem(MethodView):
         ).one()
         return render_template(
             "read_catalog_item.html",
-            catalog_item=catalog_item
+            catalog_item=catalog_item,
+            STATE=login_session.get("state")
         )
