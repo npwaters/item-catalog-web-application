@@ -43,11 +43,11 @@
                     if (result) {
                         {#$('#result').html('Login Successful!</br>' + result + '</br>Redirecting...');#}
                         $('#result').html('Login Successful!</br>' + result);
-{#
+
                         setTimeout(function () {
-                            window.location.href = "/";
-                        }, 10000);
-#}
+                            window.location.reload();
+                        }, 1000);
+
 
                     } else if (authResult['error']) {
                         console.log('There was an error: ' + authResult['error']);

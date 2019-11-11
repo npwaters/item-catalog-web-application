@@ -2,6 +2,11 @@
 {% block container %}
     <h1>{{ catalog_item.name }}</h1>
     <div>
-        {{ catalog_item.description }}
+        <p>
+            {{ catalog_item.description }}
+        </p>
+        {% if user %}
+        <a href="">Edit</a>
+        {% endif %}
     </div>
 {% endblock %}

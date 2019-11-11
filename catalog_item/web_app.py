@@ -13,5 +13,6 @@ class GetCatalogItem(MethodView):
         return render_template(
             "read_catalog_item.html",
             catalog_item=catalog_item,
-            STATE=login_session.get("state")
+            STATE=login_session.get("state"),
+            user=login_session.get("username")
         )
