@@ -14,3 +14,12 @@ def get_categories():
         return session.query(Category).all()
     except Exception:
         return
+
+
+def get_category(category_name):
+    try:
+        return session.query(Category).filter_by(
+            name=category_name
+        ).one()
+    except Exception:
+        return
