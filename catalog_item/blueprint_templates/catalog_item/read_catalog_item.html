@@ -6,7 +6,13 @@
             {{ catalog_item.description }}
         </p>
         {% if user %}
-        <a href="">Edit</a>
+        <a href="{{ url_for(
+                "catalog_item_app.edit_catalog_item_web_view",
+                category_name=category.name,
+                catalog_item_name=catalog_item.name
+                )}}">
+            Edit
+        </a>
         {% endif %}
     </div>
 {% endblock %}
