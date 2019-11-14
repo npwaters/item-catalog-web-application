@@ -3,6 +3,13 @@
     <div id="content-nav">
     {% include "nav.html" %}
         <div id="content">
+        {% if user %}
+            <a href="{{ url_for(
+                    "catalog_item_app.create_catalog_item_web_view"
+                )}}">
+                Add item
+            </a>
+        {% endif %}
             <h2>{{ heading }}</h2>
             <ul>
                 {% for item in latest_catalog_items %}

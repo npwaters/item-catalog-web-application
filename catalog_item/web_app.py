@@ -1,8 +1,37 @@
 from flask.views import MethodView
 from flask import render_template, jsonify, request, redirect, url_for
 from app import session, login_session
+from catalog_item.models import CatalogItem
 from helpers.catalog_item_helpers import get_catalog_item
 from helpers.category_helpers import get_categories, get_category
+
+
+class CreateCatalogItem(MethodView):
+
+    def dispatch_request(self):
+        if request.method == "GET":
+            categories = get_categories()
+            return render_template(
+                "create_catalog_item.html",
+                categories=categories
+            )
+        else:
+            catalog_item = CatalogItem()
+            catalog_item_form = request.form
+            if catalog_item_form.get("name"):
+                catalog_item.name = catalog_item_form.get("name")
+            if catalog_item_form.get("description"):
+                catalog_item.description = catalog_item_form.get("description")
+            category = get_category(
+                catalog_item_form.get("category").rstrip()
+            )
+            catalog_item.category_id = category.id
+            catalog_item.user_id = login_session.get("user_id")
+            session.add(catalog_item)
+            session.commit()
+            return redirect(url_for(
+                "home_app.show_home_page_web"
+            ))
 
 
 class GetCatalogItem(MethodView):

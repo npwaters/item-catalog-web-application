@@ -17,5 +17,6 @@ class ShowHomePage(MethodView):
             categories=categories,
             latest_catalog_items=latest_catalog_items,
             heading="Latest Items",
-            STATE=login_session.get("state")
+            STATE=login_session.get("state"),
+            user=login_session.get("username")
         )
