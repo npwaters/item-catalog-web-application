@@ -20,7 +20,7 @@ user = None
 category_number = 1
 
 for line in lines:
-    line_items = line.split("|")
+    line_items = [l.rstrip() for l in line.split("|")]
     if len(line_items) == 1:
         if category_number % 2 != 0:
             user = users[0]
