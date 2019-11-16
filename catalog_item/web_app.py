@@ -82,3 +82,27 @@ class EditCatalogItem(MethodView):
             )
 
 
+class DeleteCatalogItem(MethodView):
+
+    def dispatch_request(self, category_name, catalog_item_name):
+        catalog_item = get_catalog_item(
+            category_name,
+            catalog_item_name
+        )
+        if not catalog_item:
+            return jsonify({}), 404
+        category = get_category(category_name)
+        if request.method == "GET":
+            return render_template(
+                "delete_catalog_item.html",
+                category=category,
+                catalog_item=catalog_item
+            )
+        else:
+            session.delete(catalog_item)
+            session.commit()
+            return redirect(url_for(
+                "category_app.get_category_items_web_view",
+                category_name=category.name
+            ))
+
