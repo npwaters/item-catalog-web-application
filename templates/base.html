@@ -13,8 +13,16 @@
 </head>
 <body>
 <header>
-    <h1>header</h1>
+    <a href="{{ url_for("home_app.show_home_page_web") }}">
+    <div>
+        <h1>Catalog Web App</h1>
+    </div>
+    </a>
+    {% if user %}
+    <button id="signoutButton">Logout</button>
+    {% else %}
     <button id="signinButton">Login</button>
+    {% endif %}
 </header>
 <main id="main">
     <div id="container">
