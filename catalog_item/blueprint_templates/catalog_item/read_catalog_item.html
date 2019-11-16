@@ -6,13 +6,21 @@
             {{ catalog_item.description }}
         </p>
         {% if user %}
-        <a href="{{ url_for(
+            <a href="{{ url_for(
                 "catalog_item_app.edit_catalog_item_web_view",
                 category_name=category.name,
                 catalog_item_name=catalog_item.name
-                )}}">
-            Edit
-        </a>
+                ) }}">
+                Edit
+            </a>
+            |
+            <a href="{{ url_for(
+                "catalog_item_app.delete_catalog_item_web_view",
+                category_name=category.name,
+                catalog_item_name=catalog_item.name
+                ) }}">
+                Delete
+            </a>
         {% endif %}
     </div>
 {% endblock %}

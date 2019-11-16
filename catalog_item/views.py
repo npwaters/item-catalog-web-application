@@ -2,7 +2,8 @@ from flask import Blueprint
 from catalog_item.web_app import (
     GetCatalogItem,
     EditCatalogItem,
-    CreateCatalogItem
+    CreateCatalogItem,
+    DeleteCatalogItem
 )
 
 
@@ -22,6 +23,9 @@ get_catalog_item_web_view = GetCatalogItem.as_view(
 edit_catalog_item_web_view = EditCatalogItem.as_view(
     "edit_catalog_item_web_view"
 )
+delete_catalog_item_web_view = DeleteCatalogItem.as_view(
+    "delete_catalog_item_web_view"
+)
 
 catalog_item_app.add_url_rule(
     "/catalog/new",
@@ -38,4 +42,8 @@ catalog_item_app.add_url_rule(
     view_func=edit_catalog_item_web_view,
     methods=["GET", "POST", ]
 )
-
+catalog_item_app.add_url_rule(
+    "/catalog/<category_name>/<catalog_item_name>/delete",
+    view_func=delete_catalog_item_web_view,
+    methods=["GET", "POST", ]
+)
