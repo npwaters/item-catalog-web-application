@@ -14,7 +14,13 @@
             <ul>
                 {% for item in latest_catalog_items %}
                     <li>
-                        {{ item.name }} ({{ item.category.name }})
+                        <a href="{{ url_for(
+                                "catalog_item_app.get_catalog_item_web_view",
+                                category_name=item.category.name,
+                                catalog_item_name=item.name
+                            ) }}">
+                            {{ item.name }} ({{ item.category.name }})
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
