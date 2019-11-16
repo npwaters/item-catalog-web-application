@@ -23,7 +23,7 @@ class CreateCatalogItem(MethodView):
             if catalog_item_form.get("description"):
                 catalog_item.description = catalog_item_form.get("description")
             category = get_category(
-                catalog_item_form.get("category").rstrip()
+                catalog_item_form.get("category")
             )
             catalog_item.category_id = category.id
             catalog_item.user_id = login_session.get("user_id")
