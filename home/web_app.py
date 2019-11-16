@@ -3,7 +3,6 @@ from flask import render_template
 from app import session
 from category.models import Category
 from catalog_item.models import CatalogItem
-from app import login_session
 
 
 class ShowHomePage(MethodView):
@@ -19,6 +18,4 @@ class ShowHomePage(MethodView):
             categories=categories,
             latest_catalog_items=latest_catalog_items,
             heading="Latest Items",
-            STATE=login_session.get("state"),
-            user=login_session.get("username")
         )

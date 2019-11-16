@@ -18,7 +18,7 @@
         <h1>Catalog Web App</h1>
     </div>
     </a>
-    {% if user %}
+    {% if session.username %}
     <button id="signoutButton">Logout</button>
     {% else %}
     <button id="signinButton">Login</button>
@@ -42,7 +42,7 @@
             // message to the web page and then redirect back to the main restaurants page
             $.ajax({
                 type: 'POST',
-                url: '/google_login?state={{ STATE }}',
+                url: '/google_login?state={{ session.state }}',
                 processData: false,
                 data: authResult['code'],
                 contentType: 'application/octet-stream; charset=utf-8',

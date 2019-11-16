@@ -46,8 +46,6 @@ class GetCatalogItem(MethodView):
             "read_catalog_item.html",
             catalog_item=catalog_item,
             category=category,
-            STATE=login_session.get("state"),
-            user=login_session.get("username")
         )
 
 

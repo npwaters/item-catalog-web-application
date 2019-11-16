@@ -3,7 +3,7 @@
     <div id="content-nav">
     {% include "nav.html" %}
         <div id="content">
-        {% if user %}
+        {% if session.username %}
             <a href="{{ url_for(
                     "catalog_item_app.create_catalog_item_web_view"
                 )}}">
