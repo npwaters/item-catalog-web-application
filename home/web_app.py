@@ -11,7 +11,9 @@ class ShowHomePage(MethodView):
     def dispatch_request(self, *args, **kwargs):
         latest_items = 2
         categories = session.query(Category).all()
-        latest_catalog_items = session.query(CatalogItem).limit(latest_items).all()
+        latest_catalog_items = session.query(CatalogItem)\
+            .order_by(CatalogItem.id.desc())\
+            .limit(latest_items).all()
         return render_template(
             "main_nav.html",
             categories=categories,
