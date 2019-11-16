@@ -3,16 +3,15 @@ from flask import render_template
 from app import session
 from category.models import Category
 from catalog_item.models import CatalogItem
+from helpers.category_helpers import get_category, get_category_items
 
 
 class GetCategoryItems(MethodView):
 
     def dispatch_request(self, category_name):
         categories = session.query(Category).all()
-        category = session.query(Category).filter_by(name=category_name).one()
-        catalog_items = session.query(CatalogItem).filter_by(
-            category_id=category.id
-        ).all()
+        category = get_category(category_name)
+        catalog_items = get_category_items(category.id)
         return render_template(
             "category_items.html",
             categories=categories,

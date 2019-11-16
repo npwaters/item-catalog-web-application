@@ -1,6 +1,7 @@
 from flask import Blueprint
 from app import session
 from category.models import Category
+from catalog_item.models import CatalogItem
 
 
 category_helpers_app = Blueprint(
@@ -23,3 +24,11 @@ def get_category(category_name):
         ).one()
     except Exception:
         return
+
+
+def get_category_items(category_id):
+    return session.query(CatalogItem).filter_by(
+        category_id=category_id
+    ).all()
+
+
