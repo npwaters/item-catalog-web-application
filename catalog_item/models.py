@@ -14,3 +14,13 @@ class CatalogItem(Base):
     category_id = Column(Integer, ForeignKey("category.id"))
     user = relationship(User)
     category = relationship(Category)
+
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "user_id": self.user_id,
+            "category_id": self.category_id
+        }

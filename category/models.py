@@ -10,3 +10,11 @@ class Category(Base):
     name = Column(String(80), nullable=False)
     user_id = Column(Integer, ForeignKey("user.id"))
     user = relationship(User)
+
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "user_id": self.user_id
+        }
