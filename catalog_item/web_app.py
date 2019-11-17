@@ -9,6 +9,16 @@ from helpers.category_helpers import get_categories, get_category
 class CreateCatalogItem(MethodView):
 
     def dispatch_request(self):
+        if "username" not in login_session:
+            # display and alert and redirect to home page
+            # on clicking OK.
+            return (
+                "<script>function alertFunction() {"
+                "alert('You need to login to perform that action!');"
+                "window.location.href = '/';"
+                ";}</script><body onload='alertFunction()'>"
+            )
+
         if request.method == "GET":
             categories = get_categories()
             return render_template(
@@ -59,6 +69,15 @@ class EditCatalogItem(MethodView):
         if not catalog_item:
             # TODO: render a 404 error page
             return jsonify({}), 404
+        if "username" not in login_session:
+            # display and alert and redirect to home page
+            # on clicking OK.
+            return (
+                "<script>function alertFunction() {"
+                "alert('You need to login to perform that action!');"
+                "window.location.href = '/';"
+                ";}</script><body onload='alertFunction()'>"
+            )
         if request.method == "GET":
             categories = get_categories()
             return render_template(
@@ -89,6 +108,16 @@ class DeleteCatalogItem(MethodView):
         )
         if not catalog_item:
             return jsonify({}), 404
+        if "username" not in login_session:
+            # display and alert and redirect to home page
+            # on clicking OK.
+            return (
+                "<script>function alertFunction() {"
+                "alert('You need to login to perform that action!');"
+                "window.location.href = '/';"
+                ";}</script><body onload='alertFunction()'>"
+            )
+
         category = get_category(category_name)
         if request.method == "GET":
             return render_template(
