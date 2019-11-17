@@ -41,7 +41,10 @@ body {
   }
 }
 #content { grid-area: content; }
-header { grid-area: header; }
+header {
+    grid-area: header;
+    position: relative;
+}
 nav { grid-area: nav; }
 main { grid-area: main; }
 footer { grid-area: footer; }
@@ -62,4 +65,11 @@ footer {
 nav,
 #content {
     background-color: aliceblue;
+}
+
+.header-right {
+    float: right;
+}
+.header-left {
+    float: left;
 }
