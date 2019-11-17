@@ -14,9 +14,9 @@ body {
     display: grid;
     grid-gap: 1em;
     grid: 'nav content' 1fr
-    / 12em 1fr;
-    background-color: coral;
-    padding: 5em;
+    / 20em 1fr;
+    /*background-color: coral;*/
+    /*padding: 5em;*/
 }
 
 #container {
@@ -40,12 +40,18 @@ body {
 
   }
 }
-#content { grid-area: content; }
+#content {
+    grid-area: content;
+    padding: 2em;
+}
 header {
     grid-area: header;
     position: relative;
 }
-nav { grid-area: nav; }
+nav {
+    grid-area: nav;
+    padding: 1em;
+}
 main { grid-area: main; }
 footer { grid-area: footer; }
 
