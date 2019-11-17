@@ -103,3 +103,32 @@ class ProcessOAuthLogin(MethodView):
         flash("you are now logged in as %s" % login_session['username'])
         print("done!")
         return output
+
+
+class ProcessOAuthLogout(MethodView):
+
+    def dispatch_request(self):
+        access_token = login_session.get('access_token')
+        if access_token is None:
+            response = make_response(json.dumps('Current user not connected.'), 401)
+            response.headers['Content-Type'] = 'application/json'
+            return response
+        result = requests.post('https://accounts.google.com/o/oauth2/revoke',
+                      params={'token': access_token},
+                      headers={'content-type': 'application/x-www-form-urlencoded'})
+
+        if result.status_code == 200:
+            del login_session['access_token']
+            del login_session['google_id']
+            del login_session['username']
+            del login_session['email']
+            del login_session['picture']
+            response = make_response(json.dumps('Successfully disconnected.'), 200)
+            response.headers['Content-Type'] = 'application/json'
+            return response
+        else:
+            response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+            response.headers['Content-Type'] = 'application/json'
+            return response
+
+

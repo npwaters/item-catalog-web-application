@@ -2,7 +2,7 @@ import random
 import string
 from flask import Blueprint, current_app, request
 from app import login_session
-from authentication.web_app import ProcessOAuthLogin
+from authentication.web_app import ProcessOAuthLogin, ProcessOAuthLogout
 
 authentication_app = Blueprint(
     "authentication_app",
@@ -12,10 +12,18 @@ authentication_app = Blueprint(
 process_oauth_login_web_view = ProcessOAuthLogin.as_view(
     "process_oauth_login_web_view"
 )
+process_oauth_logout_web_view = ProcessOAuthLogout.as_view(
+    "process_oauth_logout_web_view"
+)
 
 authentication_app.add_url_rule(
     "/google_login",
     view_func=process_oauth_login_web_view,
+    methods=["POST", ]
+)
+authentication_app.add_url_rule(
+    "/google_logout",
+    view_func=process_oauth_logout_web_view,
     methods=["POST", ]
 )
 
