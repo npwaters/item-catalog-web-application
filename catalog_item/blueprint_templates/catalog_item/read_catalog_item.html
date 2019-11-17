@@ -5,7 +5,7 @@
         <p>
             {{ catalog_item.description }}
         </p>
-        {% if session.username %}
+        {% if session.username and session.user_id == catalog_item.user_id %}
             <a href="{{ url_for(
                 "catalog_item_app.edit_catalog_item_web_view",
                 category_name=category.name,
