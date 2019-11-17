@@ -2,14 +2,18 @@
     <h2>Categories</h2>
     <ul>
         {% for category in categories %}
-            <li>
-                <a href="{{ url_for(
+            <a href="{{ url_for(
                                 'category_app.get_category_items_web_view',
                                 category_name = category.name
                             ) }}">
-                    {{ category.name }}
-                </a>
-            </li>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 item-list">
+                        {{ category.name }}
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </a>
         {% endfor %}
     </ul>
 </nav>

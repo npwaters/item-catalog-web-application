@@ -73,3 +73,25 @@ nav,
 .header-left {
     float: left;
 }
+
+.item-list {
+    background-color: #F0F0F0;
+    padding: 20px;
+}
+
+.item-list:hover {
+    background-color: #e1e17f;
+    padding: 20px;
+}
+
+.button-links > a:link, .button-links > a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.button-links > a:hover, .button-links > a:active {
+  background-color: red;
+}

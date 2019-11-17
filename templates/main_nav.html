@@ -1,29 +1,31 @@
 {% extends "base.html" %}
 {% block container %}
     <div id="content-nav">
-    {% include "nav.html" %}
+        {% include "nav.html" %}
         <div id="content">
-        {% if session.username %}
-            <a href="{{ url_for(
+            {% if session.username %}
+                <a href="{{ url_for(
                     "catalog_item_app.create_catalog_item_web_view"
-                )}}">
-                Add item
-            </a>
-        {% endif %}
+                ) }}">
+                    Add item
+                </a>
+            {% endif %}
             <h2>{{ heading }}</h2>
-            <ul>
-                {% for item in latest_catalog_items %}
-                    <li>
-                        <a href="{{ url_for(
+            {% for item in latest_catalog_items %}
+                <a href="{{ url_for(
                                 "catalog_item_app.get_catalog_item_web_view",
                                 category_name=item.category.name,
                                 catalog_item_name=item.name
                             ) }}">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10 item-list">
                             {{ item.name }} ({{ item.category.name }})
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -6,21 +6,23 @@
             {{ catalog_item.description }}
         </p>
         {% if session.username and session.user_id == catalog_item.user_id %}
-            <a href="{{ url_for(
+            <div class="button-links">
+                <a href="{{ url_for(
                 "catalog_item_app.edit_catalog_item_web_view",
                 category_name=category.name,
                 catalog_item_name=catalog_item.name
                 ) }}">
-                Edit
-            </a>
-            |
-            <a href="{{ url_for(
+                    Edit
+                </a>
+                |
+                <a href="{{ url_for(
                 "catalog_item_app.delete_catalog_item_web_view",
                 category_name=category.name,
                 catalog_item_name=catalog_item.name
                 ) }}">
-                Delete
-            </a>
+                    Delete
+                </a>
+            </div>
         {% endif %}
     </div>
 {% endblock %}

@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 {% block container %}
     <div id="content-nav">
-    {% include "nav.html" %}
+        {% include "nav.html" %}
         <div id="content">
             <h2>{{ category.name }} Items ({{ category_items|length }} items)</h2>
-                {% for item in category_items %}
-                    <div>
-                        <a href="{{ url_for(
+            {% for item in category_items %}
+                <a href="{{ url_for(
                             "catalog_item_app.get_catalog_item_web_view",
                             category_name=category.name,
                             catalog_item_name=item.name
                         ) }}">
-                            {{ item.name }}
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10 item-list">
 
-                        </a>
+                            {{ item.name }}
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                {% endfor %}
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
