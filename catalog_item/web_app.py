@@ -6,18 +6,33 @@ from helpers.catalog_item_helpers import get_catalog_item
 from helpers.category_helpers import get_categories, get_category
 
 
+NEED_TO_BE_OWNER_RESPONSE = (
+    '<script>'
+    'function alertFunction() {'
+    'alert("Only the item owner is authorised to perform that action!");'
+    'path_items = window.location.pathname.split("/");'
+    'path_items = path_items.slice(0, -1);'
+    'len = path_items.length;'
+    'path_items.splice(len - 1, 0, "items");'
+    'window.location.href = path_items.join("/");'
+    '};'
+    '</script><body onload="alertFunction()">'
+)
+NEED_TO_BE_LOGGED_IN_RESPONSE = (
+    "<script>function alertFunction() {"
+    "alert('You need to login to perform that action!');"
+    "window.location.href = '/';"
+    ";}</script><body onload='alertFunction()'>"
+)
+
+
 class CreateCatalogItem(MethodView):
 
     def dispatch_request(self):
         if "username" not in login_session:
             # display and alert and redirect to home page
             # on clicking OK.
-            return (
-                "<script>function alertFunction() {"
-                "alert('You need to login to perform that action!');"
-                "window.location.href = '/';"
-                ";}</script><body onload='alertFunction()'>"
-            )
+            return NEED_TO_BE_LOGGED_IN_RESPONSE
 
         if request.method == "GET":
             categories = get_categories()
@@ -72,12 +87,10 @@ class EditCatalogItem(MethodView):
         if "username" not in login_session:
             # display and alert and redirect to home page
             # on clicking OK.
-            return (
-                "<script>function alertFunction() {"
-                "alert('You need to login to perform that action!');"
-                "window.location.href = '/';"
-                ";}</script><body onload='alertFunction()'>"
-            )
+            return NEED_TO_BE_LOGGED_IN_RESPONSE
+        if login_session.get("user_id") != catalog_item.user_id:
+            return NEED_TO_BE_OWNER_RESPONSE
+
         if request.method == "GET":
             categories = get_categories()
             return render_template(
@@ -111,12 +124,9 @@ class DeleteCatalogItem(MethodView):
         if "username" not in login_session:
             # display and alert and redirect to home page
             # on clicking OK.
-            return (
-                "<script>function alertFunction() {"
-                "alert('You need to login to perform that action!');"
-                "window.location.href = '/';"
-                ";}</script><body onload='alertFunction()'>"
-            )
+            return NEED_TO_BE_LOGGED_IN_RESPONSE
+        if login_session.get("user_id") != catalog_item.user_id:
+            return NEED_TO_BE_OWNER_RESPONSE
 
         category = get_category(category_name)
         if request.method == "GET":
