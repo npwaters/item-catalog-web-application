@@ -36,8 +36,6 @@
         function signInCallback(authResult) {
         if (authResult['code']) {
             console.log("got the id token!");
-            // Hide the sign-in button now that the user is authorized
-            $('#signinButton').attr('style', 'display: none');
             // Send the one-time-use code to the server, if the server responds, write a 'login successful'
             // message to the web page and then redirect back to the main restaurants page
             $.ajax({
@@ -52,6 +50,7 @@
                         {#$('#result').html('Login Successful!</br>' + result + '</br>Redirecting...');#}
                         $('#result').html('Login Successful!</br>' + result);
 
+                        {#reload the current page #}
                         setTimeout(function () {
                             window.location.reload();
                         }, 1000);
