@@ -103,6 +103,13 @@ class EditCatalogItem(MethodView):
             catalog_item_form = request.form
             if catalog_item_form.get("name"):
                 catalog_item.name = catalog_item_form.get("name")
+            if catalog_item_form.get("description"):
+                catalog_item.description = catalog_item_form.get("description")
+            category = get_category(
+                catalog_item_form.get("category")
+            )
+            catalog_item.category_id = category.id
+
             session.add(catalog_item)
             session.commit()
             return redirect(url_for(
