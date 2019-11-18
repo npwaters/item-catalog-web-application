@@ -14,15 +14,15 @@
 <body>
 <header>
     <a href="{{ url_for("home_app.show_home_page_web") }}">
-    <div class="header-left">
+    <div class="header-left logo">
         <h1>Catalog Web App</h1>
     </div>
     </a>
     <div class="header-right">
         {% if session.username %}
-        <button id="signoutButton">Logout</button>
+        <button id="signoutButton" class="login-logout-button">Logout</button>
         {% else %}
-        <button id="signinButton">Login</button>
+        <button id="signinButton" class="login-logout-button">Login</button>
         {% endif %}
     </div>
 </header>
@@ -32,7 +32,8 @@
     </div>
 </main>
 <footer>
-    <h2>footer</h2>
+{#    <h2>footer</h2>#}
+    Web site developed by npwaters
 </footer>
 <script>
         function signInCallback(authResult) {

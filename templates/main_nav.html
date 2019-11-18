@@ -4,11 +4,13 @@
         {% include "nav.html" %}
         <div id="content">
             {% if session.username %}
-                <a href="{{ url_for(
+                <div class="button-links">
+                    <a href="{{ url_for(
                     "catalog_item_app.create_catalog_item_web_view"
                 ) }}">
                     Add item
                 </a>
+                </div>
             {% endif %}
             <h2>{{ heading }}</h2>
             {% for item in latest_catalog_items %}
