@@ -8,7 +8,7 @@
                 catalog_item_name=catalog_item.name)}}"
               method="post"
         >
-            <div class="form-group">
+            <div class="form-group left-align-text">
                 <label for="name">Name:</label>
                 <input
                         type="text"
@@ -16,14 +16,30 @@
                         name="name"
                         value="{{ catalog_item.name }}"
                 >
-                <button
-                        type="submit"
-                        class="btn btn-default"
-                        id="submit"
+                <label for="name">Description:</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        value="{{ catalog_item.description }}"
                 >
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    Save
-                </button>
+                <label for="category">Category:</label>
+                <select name="category">
+                    {% for category in categories %}
+                    <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <div>
+                    <button
+                            type="submit"
+                            class="btn btn-default"
+                            id="submit"
+                    >
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        Save
+                    </button>
+                </div>
             </div>
         </form>
     </div>
