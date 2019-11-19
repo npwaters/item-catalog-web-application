@@ -9,7 +9,7 @@ from helpers import user_helpers
 
 
 CLIENT_ID = json.loads(
-    open("authentication/client_secrets.json").read()
+    open("authentication/client_secret.json").read()
 )["web"]["client_id"]
 
 
@@ -25,7 +25,7 @@ class ProcessOAuthLogin(MethodView):
 
         try:
             # Upgrade the authorization code into a credentials object
-            oauth_flow = flow_from_clientsecrets('authentication/client_secrets.json', scope='')
+            oauth_flow = flow_from_clientsecrets('authentication/client_secret.json', scope='')
             oauth_flow.redirect_uri = 'postmessage'
             credentials = oauth_flow.step2_exchange(code)
         except FlowExchangeError:
