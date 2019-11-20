@@ -22,7 +22,7 @@ Install the project package requirements
     vagrant@vagrant:~/apps/catalog$ source venv/bin/activate
     (venv) vagrant@vagrant:~/apps/catalog$ pip install -r requirements.txt
 
-Configure a secret key
+Configure a secret key and Google OAuth API client ID
 
     (venv) vagrant@vagrant:~/apps/catalog$ echo -e "SECRET_KEY = '[your secret key]'\nGOOGLE_OAUTH_API_CLIENT_ID = '[your Google OAuth API client ID]'"  > settings.py
 
