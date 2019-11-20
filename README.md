@@ -54,6 +54,7 @@ The database can be seeded using 'create_catalog_items.py'. The source file is <
 'catalog_data.txt'.<br>
 Catalog item attributes are delimited by a pipe "|" character.<br> 
 Category names are on lines with no delimiter.<br>
+A category line must be the first line of the file.<br>
 All catalog item lines following a category line will be associated with the category.<br>
 User 1 will be associated with category and related items when the number of categories is an odd number, <br>
 User 2 when an even number.
