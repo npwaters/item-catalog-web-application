@@ -62,7 +62,7 @@ User 2 when an even number.
 
 #### Starting the Item Catalog
 
-The command below starts the web application such that it can be accessed remotely port 5004
+The command below starts the web application such that it can be accessed remotely on port 5004
 
     vagrant@vagrant:~/apps/catalog$ flask run --host=0.0.0.0 --port=5004
 
