@@ -1,4 +1,13 @@
 <nav>
+    {% if session.username %}
+        <div class="button-links">
+            <a href="{{ url_for(
+                    "catalog_item_app.create_catalog_item_web_view"
+                ) }}">
+                Add item
+            </a>
+        </div>
+    {% endif %}
     <h2>Categories</h2>
 
     {% for category in categories %}
