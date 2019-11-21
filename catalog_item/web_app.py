@@ -1,5 +1,5 @@
 from flask.views import MethodView
-from flask import render_template, jsonify, request, redirect, url_for
+from flask import render_template, jsonify, request, redirect, url_for, flash
 from app import session, login_session
 from catalog_item.models import CatalogItem
 from helpers.catalog_item_helpers import get_catalog_item
@@ -57,6 +57,11 @@ class CreateCatalogItem(MethodView):
             )
             if existing_catalog_item:
                 # add flash message
+                flash(
+                    "A catalog item with the name {0} already exists"
+                    " in category {1}".format(new_item_name, category.name),
+                    "error"
+                )
                 return redirect(url_for(
                     "category_app.get_category_items_web_view",
                     category_name=category.name
