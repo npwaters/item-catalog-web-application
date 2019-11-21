@@ -26,7 +26,14 @@
                 <label for="category">Category:</label>
                 <select name="category">
                     {% for category in categories %}
-                    <option value="{{ category.name }}">{{ category.name }}</option>
+                    <option
+                            value="{{ category.name }}"
+                            {% if category.name == category_name %}
+                            selected
+                            {% endif %}
+                    >
+                        {{ category.name }}
+                    </option>
                     {% endfor %}
                 </select>
 
