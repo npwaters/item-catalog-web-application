@@ -152,6 +152,24 @@ a:link, a:visited {color: white}
     text-align: left;
 }
 
+.flash {
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+.error {
+    background-color: red;
+    padding: 0.5em;
+    font-size: 1.5em;
+}
+
+.success {
+    background-color: red;
+    padding: 0.5em;
+    font-size: 1.5em;
+}
+
 /* form styles */
 
 form {
