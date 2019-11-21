@@ -43,13 +43,27 @@ class CreateCatalogItem(MethodView):
         else:
             catalog_item = CatalogItem()
             catalog_item_form = request.form
-            if catalog_item_form.get("name"):
+            new_item_name = catalog_item_form.get("name")
+            if new_item_name:
                 catalog_item.name = catalog_item_form.get("name")
-            if catalog_item_form.get("description"):
-                catalog_item.description = catalog_item_form.get("description")
             category = get_category(
                 catalog_item_form.get("category")
             )
+            # check if the already a catalog_item with the same
+            # name in this category
+            existing_catalog_item = get_catalog_item(
+                category.name,
+                new_item_name
+            )
+            if existing_catalog_item:
+                # add flash message
+                return redirect(url_for(
+                    "category_app.get_category_items_web_view",
+                    category_name=category.name
+                ))
+            if catalog_item_form.get("description"):
+                catalog_item.description = catalog_item_form.get("description")
+
             catalog_item.category_id = category.id
             catalog_item.user_id = login_session.get("user_id")
             session.add(catalog_item)
