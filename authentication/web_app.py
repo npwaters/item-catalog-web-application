@@ -100,7 +100,7 @@ class ProcessOAuthLogin(MethodView):
         output += '<img src="'
         output += login_session['picture']
         output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-        flash("you are now logged in as %s" % login_session['username'])
+        flash("You are now logged in as %s" % login_session['username'], "success")
         print("done!")
         return output
 
@@ -125,6 +125,7 @@ class ProcessOAuthLogout(MethodView):
             del login_session['picture']
             response = make_response(json.dumps('Successfully disconnected.'), 200)
             response.headers['Content-Type'] = 'application/json'
+            flash("You have successfully logged out", "success")
             return response
         else:
             response = make_response(json.dumps('Failed to revoke token for given user.', 400))
