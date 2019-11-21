@@ -73,6 +73,11 @@ class CreateCatalogItem(MethodView):
             catalog_item.user_id = login_session.get("user_id")
             session.add(catalog_item)
             session.commit()
+            flash(
+                "Catalog item {0} successfully created"
+                " in category {1}".format(new_item_name, category.name),
+                "success"
+            )
             return redirect(url_for(
                 "home_app.show_home_page_web"
             ))
@@ -131,6 +136,10 @@ class EditCatalogItem(MethodView):
 
             session.add(catalog_item)
             session.commit()
+            flash(
+                "Catalog item {0} successfully updated".format(catalog_item.name),
+                "success"
+            )
             return redirect(url_for(
                 "category_app.get_category_items_web_view",
                 category_name=category_name
@@ -164,6 +173,11 @@ class DeleteCatalogItem(MethodView):
         else:
             session.delete(catalog_item)
             session.commit()
+            flash(
+                "Catalog item {0} successfully removed"
+                " from category {1}".format(catalog_item.name, category.name),
+                "success"
+            )
             return redirect(url_for(
                 "category_app.get_category_items_web_view",
                 category_name=category.name
