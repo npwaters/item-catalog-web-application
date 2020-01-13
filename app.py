@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 engine = create_engine(
-    'postgresql://vagrant:{0}@{1}/catalog'.format(
+    'postgresql://catalog:{0}@{1}/catalog'.format(
         os.environ.get("VAGRANT_PASSWORD"),
         os.environ.get("DB_IP")
     ),
